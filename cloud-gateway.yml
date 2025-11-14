@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8080
 
 spring:
   cloud:
@@ -13,7 +13,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: order-service
-                fallbackUri: forward:/orderFallback
+                fallbackUri: forward:/fallback/order
         - id: payment-service
           uri: lb://payment-service
           predicates:
@@ -22,7 +22,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: payment-service
-                fallbackUri: forward:/paymentFallback
+                fallbackUri: forward:/fallback/payment
         - id: monitoring-dashboard
           uri: http://localhost:9411
           predicates:
