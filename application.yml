@@ -20,6 +20,14 @@ spring:
       client:
         url: http://localhost:9411
 
+# Logging Configuration
+logging:
+  level:
+    org.springframework.cloud: DEBUG
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+    root: INFO
+
 # Microservices Endpoints Configuration
 microservices:
   payment-service:
