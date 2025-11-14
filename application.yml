@@ -19,3 +19,20 @@ spring:
     admin:
       client:
         url: http://localhost:9411
+
+# Microservices Endpoints Configuration
+microservices:
+  payment-service:
+    base-url: http://payment-service
+    endpoints:
+      do-payment: /payment/doPayment
+      get-payment: /payment/{orderId}
+  order-service:
+    base-url: http://order-service
+    endpoints:
+      create-order: /order
+      get-order: /order/{id}
+  gateway:
+    routes:
+      order-prefix: /order/**
+      payment-prefix: /payment/**
