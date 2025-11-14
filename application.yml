@@ -1,3 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config-files/
+        git:
+          uri: https://github.com/Yashbhawsar27/cloud-config-server.git
+          clone-on-start: true
+          default-label: main
+  profiles:
+    active: native
+
 eureka:
   client:
     service-url:
@@ -10,37 +28,3 @@ management:
     web:
       exposure:
         include: "*"
-  endpoint:
-    health:
-      show-details: always
-
-spring:
-  boot:
-    admin:
-      client:
-        url: http://localhost:9411
-
-# Logging Configuration
-logging:
-  level:
-    org.springframework.cloud: DEBUG
-    com.netflix.eureka: OFF
-    com.netflix.discovery: OFF
-    root: INFO
-
-# Microservices Endpoints Configuration
-microservices:
-  payment-service:
-    base-url: http://payment-service
-    endpoints:
-      do-payment: /payment/doPayment
-      get-payment: /payment/{orderId}
-  order-service:
-    base-url: http://order-service
-    endpoints:
-      create-order: /order
-      get-order: /order/{id}
-  gateway:
-    routes:
-      order-prefix: /order/**
-      payment-prefix: /payment/**
