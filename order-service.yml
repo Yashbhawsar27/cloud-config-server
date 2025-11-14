@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: 8081
 
 spring:
   datasource:
@@ -14,3 +14,14 @@ spring:
   h2:
     console:
       enabled: true
+      path: /h2-console
+
+# Circuit Breaker Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      payment-service:
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        minimum-number-of-calls: 5
